@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="spring-boot-logo-24.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+    html{
+        -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            line-height: 1.4;
+    }
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    }
+    .background{
+    width: 100px;
+    height: 50vh;
+    background:transparent;
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+
+    }
+    .perfil-usuario .container{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+    height: 750px;
+    background-image: linear-gradient(
+        0deg,
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0.5)
+
+    )
+    ,url("canva.png");
+
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    margin-top: 30px;
+
+
+    }
+
+
+    .perfil-usuario .foto {
+        display: block;
+            width: 270px;
+            height: 270px;
+            background-color: #D9DCF1;
+            position: absolute;
+            bottom: 300px;
+            left: 5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 8px solid #FFFFFF ;
+            box-shadow: 0 0 12px 2px rgba(0, 0, 0, .2);
+
+    }
+
+    .perfil-usuario .cambiar-foto {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, .5);
+        height: 57%;
+        bottom: 0;
+        left: 0;
+        color: #fff;
+        text-decoration: none;
+        transform: translateY(50%);
+        transition: all ease-in 200ms;
+        opacity: 0;
+    }
+    .perfil-usuario .cambiar-foto i {
+            margin-bottom: .5rem;
+            font-size: 2rem;
+        }
+
+
+    .perfil-usuario .foto:hover .cambiar-foto{
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .perfil-usuario .content{
+        
+        position: absolute;
+        display: block;
+        width: calc(100% - 400px - 10rem);
+        right: 0;
+        bottom: 0;
+        top: 100px;
+        color: #fff;
+        padding-bottom: 1rem;
+        padding-right: 1rem;
+
+    }
+    .perfil-usuario .titulo-usuario {
+            font-size: 2.3rem;
+            white-space: nowrap;
+            margin-bottom: .5rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .perfil-usuario .bio-usuario {
+            font-size: 1em;
+            margin-bottom: .75rem;
+        }
+
+        .perfil-usuario .lista-perfil {
+            list-style: none;
+        }
+        .perfil-usuario .lista-perfil li {
+            display: inline-block;
+            font-size: 1em;
+            margin-right: 1rem;
+        }
+
+    
+    .btn {
+        margin-top:25px;
+        width: 50%;
+        height: 45px;
+        background:darkmagenta;
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        color: #e4e4e4;
+        font-weight: 500;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+        
+
+    }
+    .btn:hover {
+
+        background-color:darkorchid;
+    }
+
+        
+
+    </style>
+    <title>Inicio</title>
+</head>
+<body>
+    <div class="background"></div>
+    <section class="perfil-usuario">
+        <div class="container">
+            
+            <div class="foto">
+                <img id="avatar" src="" alt="img">
+                <label for="file-upload" class="cambiar-foto">
+                    <i class='bx bxs-camera'></i>
+                    <span>Cambiar Foto</span>
+                </label>
+                <input id="file-upload" type="file" style="display:none">
+            </div>
+        
+            <div class="content">
+                <h4 class="titulo-usuario" id="welcome-message"></h4>
+                <p id="user-fullname"></p>
+                <ul class="lista-perfil">
+                    <li id="email"></li>
+                    <li id="user-credits"></li>
+                    <li id="user-xp"></li>
+                </ul>
+                <form action="https://karinacaba.github.io/KarinaCaba.github.oi/P2/p2.html">
+                <button type="submit" class="btn" >Salir</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script>
+
+
+        
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        
+    
+        if (userData) {
+            
+            const userId = localStorage.getItem('userId');
+        
+            
+            const welcomeMessage = `Bienvenido de Nuevo:`;
+            document.getElementById('welcome-message').innerText = welcomeMessage;
+        
+            
+            const userFullName = `${userData.firstname} ${userData.lastname}`;
+            document.getElementById('user-fullname').innerText = userFullName;
+        
+            
+            const userEmail = `Correo: ${userData.email}`;
+            document.getElementById('email').innerText = userEmail;
+        
+            
+            const userCredits = `Tus créditos: ${userData.credits}`;
+            document.getElementById('user-credits').innerText = userCredits;
+        
+            
+            const userXP = `Tu experiencia: ${userData.xp}`;
+            document.getElementById('user-xp').innerText = userXP;
+        
+            
+            document.getElementById('avatar').src = userData.pfp_url;
+        
+            
+            const id = userId;
+        
+        document.getElementById('file-upload').addEventListener('change', async function (event) {
+            const file = event.target.files[0]; 
+        
+            
+            if (file && file.type === 'image/jpeg') {
+                
+        
+            
+                formData.append('token', 'code37');
+                formData.append('id', userId); 
+                formData.append('Image', file);
+        
+                try {
+                    
+                    const response = await fetch('http://monsterballgo.com/api/setpfp.php', {
+                        method: 'POST',
+                        body: formData
+                    });
+        
+                    
+                    const data = await response.json();
+        
+                    
+                    if (response.ok) {
+                        
+                        console.log('Foto de perfil cambiada exitosamente:', data);
+                        
+                        if (data.pfp_url) {
+                            
+                            document.getElementById('avatar').src = data.pfp_url;
+                        } else {
+                            console.error('Error: la respuesta del servidor no contiene la URL de la foto de perfil.');
+                        }
+                    } else {
+                        
+                        throw new Error(data.error);
+                    }
+                } catch (error) {
+                    console.error('Error al cambiar la foto de perfil:', error);
+                    event.target.value = null;
+                    alert('Ocurrió un error al cambiar la foto de perfil: ' + error.message);
+                }
+            } else {
+                
+                console.error('Error: el archivo seleccionado no es de tipo JPEG.');
+                alert('Error: El archivo seleccionado no es un archivo JPG válido.');
+            }
+        });
+        }
+
+       
+            </script>
+        
+</body>
+</html>
